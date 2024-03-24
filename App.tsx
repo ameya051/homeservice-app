@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import Login from "./app/screens/LoginScreen/Login";
+import TabNavigation from "./app/navigations/TabNavigation";
 
 const tokenCache = {
   async getToken(key: string) {
@@ -23,14 +25,19 @@ const tokenCache = {
 
 export default function App() {
   return (
-    <ClerkProvider tokenCache={tokenCache} publishableKey="pk_test_YnVzeS1jYXQtNTkuY2xlcmsuYWNjb3VudHMuZGV2JA">
+    <ClerkProvider
+      tokenCache={tokenCache}
+      publishableKey="pk_test_YnVzeS1jYXQtNTkuY2xlcmsuYWNjb3VudHMuZGV2JA"
+    >
       <SafeAreaView style={styles.container}>
-      <SignedIn>
-        <Text>You are Signed in</Text>
-      </SignedIn>
-      <SignedOut>
-        <Login />
-      </SignedOut>
+        <SignedIn>
+          <NavigationContainer>
+            <TabNavigation />
+          </NavigationContainer>
+        </SignedIn>
+        <SignedOut>
+          <Login />
+        </SignedOut>
         <StatusBar style="auto" />
       </SafeAreaView>
     </ClerkProvider>

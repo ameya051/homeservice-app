@@ -1,14 +1,19 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import Header from "./Header";
+import Slider from "./Slider";
 
-type Props = {}
+type Props = {};
 
 const HomeScreen = (props: Props) => {
   return (
     <View>
-      <Text>HomeScreen</Text>
+      <Header />
+      <View style={{ padding: 20 }}>
+        <Slider />
+      </View>
     </View>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
